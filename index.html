@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VOSS - عالم العطور الفاخرة | عطور مميزة بجودة عالية">
+    <title>VOSS - عطور فاخرة</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Root Variables - Luxury Colors */
+        :root {
+            --primary-color: #1C1C1C;
+            --secondary-color: #D4AF37;  /* Soft Gold */
+            --gold-light: #F4D03F;      /* Light Gold */
+            --gold-dark: #C5A028;       /* Dark Gold */
+            --cream: #FDF5E6;           /* Warm Cream */
+            --white: #FFFFFF;
+            --black: #111111;
+            --text-color: #E5E5E5;
+            --gradient-gold: linear-gradient(135deg, 
+                #C5A028 0%,
+                #F4D03F 50%,
+                #D4AF37 100%
+
+            );
+            --card-bg: rgba(196, 166, 97, 0.05);
+            --overlay: rgba(26, 26, 26, 0.7);
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: url('f2.jpg') center/cover fixed, var(--primary-color); /* خلفية افتراضية مع لون احتياطي */
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); } /* تقليل الحركة لتحسين الأداء */
+        }
+
+        @keyframes shine {
+            0% { background-position: -100%; }
+            100% { background-position: 200%; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(var(--overlay), var(--overlay)), url('assets/hero-bg.jpg') center/cover fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* تحسين الوضوح */
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        /* Sale Timer */
+        .sale-timer {
+            background: var(--gradient-gold);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            color: var(--black);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .time-block {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 15px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .time-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--black);
+        }
+
+        .time-text {
+            font-size: 1rem;
+            color: var(--black);
+            margin-top: 0.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background: var(--black);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(196, 166, 97, 0.1);
+            transition: all 0.3s ease;
+            animation: float 2s ease-in-out infinite; /* تقليل المدة */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* ظل لتحسين التصميم */
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 30px rgba(196, 166, 97, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 28px;
+            color: var(--black);
+        }
+
+        /* Tips Section */
+        .perfume-tips {
+            padding: 4rem 2rem;
+            background: var(--primary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-gold);
+        }
+
+        .tips-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tips-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .tips-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tip-card {
+            min-width: 280px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(196, 166, 97, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* ظل إضافي */
+        }
+
+        .tip-card.active {
+            border-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .tips-slider-controls {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .tips-slider-controls button {
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            background: var(--secondary-color);
+            color: var(--black);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tips-slider-controls button:hover {
+            background: var(--gold-dark);
+        }
+
+        /* Catalog Section */
+        .catalog {
+            padding: 4rem 2rem;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .catalog-content .prices {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .catalog-content .price-item {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 15px;
+            min-width: 250px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: var(--black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(196, 166, 97, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+            color: var(--gold-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.4rem; }
+            .timer { flex-wrap: wrap; }
+            .time-block { min-width: 80px; }
+            .feature-card { padding: 1.5rem; }
+            .section-title { font-size: 2rem; }
+            .tips-slider { gap: 1rem; }
+            .tip-card { min-width: 260px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">VOSS</h1>
+            <p class="hero-subtitle">اكتشف عالماً من العطور الفاخرة</p>
+
+            <!-- Sale Timer -->
+            <div class="sale-timer">
+                <h2>خصم مفاجأه على جميع العطور</h2>
+                <p>كل اخر جمعه من كل شهر</p>
+                <div class="timer">
+                    <div class="time-block">
+                        <div class="time-number" id="days">00</div>
+                        <div class="time-text">يوم</div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-number" id="hours">00</div>
+                        <div class="time-text">ساعة</div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-number" id="minutes">00</div>
+                        <div class="time-text">دقيقة</div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-number" id="seconds">00</div>
+                        <div class="time-text">ثانية</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>يدوم 24 ساعة</h3>
+                <p>عطور بتركيبة خاصة تدوم طوال اليوم</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-spray-can"></i>
+                </div>
+                <h3>فوحان قوي</h3>
+                <p>عطور مركزة تترك انطباعاً لا يُنسى</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>جودة عالمية</h3>
+                <p>أفضل الخامات العالمية بأيدي خبراء العطور</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    
+
+    <!-- Catalog Section -->
+    <section class="catalog">
+        <h2 class="section-title">تصفح كتالوج منتجاتنا</h2>
+        <div class="catalog-content">
+            <p>اكتشف مجموعتنا المميزة من العطور الفاخرة بمختلف الأحجام والأسعار</p>
+            <div class="prices">
+                <div class="price-item">
+                    <span>100 مل</span>
+                    <span>900 جنيه</span>
+                </div>
+                <div class="price-item">
+                    <span>50 مل</span>
+                    <span>600 جنيه</span>
+                </div>
+                <div class="price-item">
+                    <span>30 مل</span>
+                    <span>400 جنيه</span>
+                </div>
+            </div>
+            <div class="catalog-buttons">
+                <a href="voss cat.pdf" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-book"></i>
+                    كتالوج المنتجات
+                </a>
+                <a href="https://wa.me/201557171807" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    تواصل معنا
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">VOSS</div>
+            <div class="social-links">
+                <a href="https://instagram.com/vossperfumes" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com/vossperfumes" class="social-link" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://wa.me/201557171807" class="social-link" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <p class="footer-text">جميع الحقوق محفوظة © 2025 VOSS</p>
+        </div>
+    </footer>
+
+    <script>
+        // Timer Function
+        function initTimer() {
+            function getLastFridayOfMonth(date) {
+                const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                const lastFriday = new Date(lastDay);
+                while (lastFriday.getDay() !== 5) {
+                    lastFriday.setDate(lastFriday.getDate() - 1);
+                }
+                lastFriday.setHours(23, 59, 59, 999);
+                return lastFriday;
+            }
+
+            function updateTimer() {
+                const now = new Date();
+                let targetDate = getLastFridayOfMonth(now);
+                
+                if (now > targetDate) {
+                    const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+                    targetDate = getLastFridayOfMonth(nextMonth);
+                }
+
+                const difference = targetDate - now;
+                
+                if (difference <= 0) {
+                    document.querySelector('.sale-timer').innerHTML = '<h2>العرض لمده 24 ساعه </h2>';
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // Tips Slider
+        let currentTip = 0;
+        function initTipsSlider() {
+            const tipCards = document.querySelectorAll('.tip-card');
+            tipCards[0].classList.add('active');
+
+            tipCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    tipCards.forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                    currentTip = parseInt(card.dataset.tip) - 1;
+                });
+            });
+
+            setInterval(() => {
+                tipCards.forEach(card => card.classList.remove('active'));
+                currentTip = (currentTip + 1) % tipCards.length;
+                tipCards[currentTip].classList.add('active');
+            }, 5000);
+        }
+
+        function moveSlider(direction) {
+            const tipCards = document.querySelectorAll('.tip-card');
+            tipCards.forEach(card => card.classList.remove('active'));
+            currentTip = (currentTip + direction + tipCards.length) % tipCards.length;
+            tipCards[currentTip].classList.add('active');
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initTimer();
+            initTipsSlider();
+        });
+    </script>
+</body>
+</html>
