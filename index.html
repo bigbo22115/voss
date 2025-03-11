@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VOSS - عالم العطور الفاخرة | عطور مميزة بجودة عالية">
-    <title>VOSS - عطور فاخرة</title>
+    <meta name="description" content="VOSS - عالم العطور الفاخرة | عطور مميزة بتركيبات حصرية وجودة عالمية">
+    <meta name="keywords" content="عطور فاخرة, عطور مركزة, عطور عربية, VOSS">
+    <meta name="author" content="VOSS Perfumes">
+    <meta property="og:title" content="VOSS - عطور فاخرة">
+    <meta property="og:description" content="اكتشف عالماً من العطور الفاخرة بجودة عالمية وتركيبات حصرية">
+    <meta property="og:type" content="website">
+    <title>VOSS - عطور فاخرة | عالم من الفخامة والتميز</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- استيراد الخطوط والأيقونات -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
     <style>
         :root {
-            --primary-color: #1C1C1C;
+            --primary-color: #0F0F0F;
             --secondary-color: #D4AF37;
             --gold-light: #F4D03F;
             --gold-dark: #C5A028;
@@ -19,9 +28,16 @@
             --white: #FFFFFF;
             --black: #111111;
             --text-color: #E5E5E5;
+            --dark-text: #333333;
             --gradient-gold: linear-gradient(135deg, #C5A028 0%, #F4D03F 50%, #D4AF37 100%);
+            --gradient-dark: linear-gradient(135deg, #1C1C1C 0%, #2D2D2D 100%);
             --card-bg: rgba(196, 166, 97, 0.05);
-            --overlay: rgba(26, 26, 26, 0.7);
+            --overlay: rgba(15, 15, 15, 0.75);
+            --overlay-dark: rgba(10, 10, 10, 0.9);
+            --transition: all 0.3s ease;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 20px;
+            --border-radius-sm: 10px;
         }
 
         * {
@@ -32,11 +48,120 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: url('') center/cover fixed, var(--primary-color); /* خلفية افتراضية مع لون احتياطي */
+            background-color: var(--primary-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        ::selection {
+            background-color: var(--secondary-color);
+            color: var(--black);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .section-title {
+            position: relative;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 3px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: var(--overlay-dark);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            padding: 0.7rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-gold);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             background: linear-gradient(var(--overlay), var(--overlay)), url('f2.jpg') center/cover fixed;
@@ -49,126 +174,488 @@
             padding: 2rem;
         }
 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, var(--primary-color) 150%);
+        }
+
         .hero-content {
             width: 100%;
-            max-width: 800px;
-            padding: 1rem;
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(3.5rem, 10vw, 6rem);
             color: var(--secondary-color);
             margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            font-weight: 800;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-size: clamp(1.3rem, 4vw, 2rem);
             color: var(--cream);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
         }
 
+        .scroll-down {
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--secondary-color);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Sale Timer */
         .sale-timer {
-            background: var(--gradient-gold);
-            border-radius: 20px;
-            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: var(--border-radius);
+            padding: 2rem;
             margin: 2rem auto;
-            color: var(--black);
             max-width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(var(--overlay), var(--overlay)), url('timer ramdan.jpg') center/cover fixed;
+
+        }
+
+        .sale-timer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('') center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .sale-timer h2 {
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            position: center;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .sale-timer p {
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+
         }
 
         .timer {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
             margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .time-block {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(25, 25, 25, 0.8);
             padding: 0.8rem;
-            border-radius: 15px;
+            border-radius: var(--border-radius-sm);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .time-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
         .time-number {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             font-weight: bold;
+            color: var(--secondary-color);
+            text-align: center;
+
+            
         }
 
+        .time-text {
+            color: var(--cream);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+            text-align: center;
+           
+        }
+
+        /* Features Section */
         .features {
-            padding: 2rem 1rem;
+            padding: 6rem 0;
+            position: relative;
+            background: linear-gradient(to bottom, var(--primary-color), rgba(25, 25, 25, 1));
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('f2.jpg') center/cover fixed;
+            opacity: 0.03;
+            z-index: 0;
         }
 
         .features-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 1.5rem;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.8));
+            border-radius: var(--border-radius);
+            padding: 2.5rem 1.5rem;
             text-align: center;
             border: 1px solid rgba(196, 166, 97, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(196, 166, 97, 0.05), transparent);
+            transform: rotate(45deg);
+            transition: all 0.8s ease;
+            z-index: 0;
+        }
+
+        .feature-card:hover::before {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% {
+                top: -50%;
+                left: -50%;
+            }
+            100% {
+                top: 150%;
+                left: 150%;
+            }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-color: rgba(196, 166, 97, 0.3);
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             background: var(--gradient-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .feature-icon i {
-            font-size: 24px;
+            font-size: 30px;
             color: var(--black);
         }
 
-        .catalog {
-            padding: 2rem 1rem;
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--text-color);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 0;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(25, 25, 25, 1), var(--primary-color));
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('f2.jpg') center/cover fixed;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.8));
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(196, 166, 97, 0.1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-color: rgba(196, 166, 97, 0.2);
+        }
+
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(15, 15, 15, 0.9));
+        }
+
+        .product-info {
+            padding: 1.5rem;
             text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .price-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(196, 166, 97, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(196, 166, 97, 0.2);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        /* Catalog Section */
+        .catalog {
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(to bottom, var(--primary-color), rgba(25, 25, 25, 1));
+        }
+
+        .catalog::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('f2.jpg') center/cover fixed;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .catalog-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .catalog p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
         }
 
         .prices {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem auto;
+            gap: 2rem;
+            margin: 2.5rem auto;
             max-width: 800px;
             padding: 0 1rem;
         }
 
         .price-item {
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 15px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.8));
+            padding: .5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(196, 166, 97, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .price-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-color: rgba(196, 166, 97, 0.2);
+        }
+
+        .price-item .size {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .price-item .price {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .price-tag-badge {
+            background: rgba(196, 166, 97, 0.2);
+            border-radius: 20px;
+            padding: 0.3rem 1rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .catalog-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
         .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
+            padding: 0.9rem 1.8rem;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            min-width: 200px;
+            gap: 0.8rem;
+            min-width: 220px;
             justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
         }
 
         .btn-primary {
@@ -176,208 +663,805 @@
             color: var(--black);
         }
 
+        .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+        }
+
         .btn-secondary {
             background: transparent;
             color: var(--secondary-color);
             border: 1px solid var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        footer {
-            padding: 2rem 1rem;
-            text-align: center;
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
         }
 
-        .social-links {
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, rgba(25, 25, 25, 1), var(--primary-color));
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1617500603321-0df506c8a1b9?q=80&w=1920') center/cover fixed;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .testimonials-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testimonial-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            flex: 0 0 calc(33.333% - 1rem);
+            scroll-snap-align: start;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.8));
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(196, 166, 97, 0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #555;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            flex-grow: 1;
+        }
+
+        .author-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .slider-dots {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
+            gap: 0.5rem;
+            margin-top: 2rem;
         }
 
-        .social-link {
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--secondary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            position: relative;
+            background: linear-gradient(to bottom, var(--primary-color), rgba(20, 20, 20, 1));
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1617500603321-0df506c8a1b9?q=80&w=1920') center/cover fixed;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-title {
+            font-size: 2rem;
             color: var(--secondary-color);
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
+            margin-bottom: 1rem;
         }
 
-        .social-link:hover {
-            transform: scale(1.1);
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
         }
 
-        @media (max-width: 480px) {
-            .btn {
-                width: 100%;
-                margin: 0.5rem 0;
-            }
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-top: 0.2rem;
+        }
 
-            .timer {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .contact-text {
+            flex-grow: 1;
+        }
 
-            .prices {
-                grid-template-columns: 1fr;
-            }
+        .contact-text h4 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-text a:hover {
+            color: var(--secondary-color);
+        }
+
+        .contact-form {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.8));
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(196, 166, 97, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(15, 15, 15, 0.5);
+            border: 1px solid rgba(196, 166, 97, 0.1);
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            color: var(--text-color);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
         }
     </style>
 </head>
-
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">VOSS</h1>
-            <p class="hero-subtitle">اكتشف عالماً من العطور الفاخرة</p>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <a href="" class="logo">VOSS</a>
+                <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link">الرئيسية</a></li>
+                    <li><a href="#features" class="nav-link">المميزات</a></li>
+                    <li><a href="#products" class="nav-link">المنتجات</a></li>
+                    <li><a href="#catalog" class="nav-link">الكتالوج</a></li>
+                    <!-- <li><a href="#testimonials" class="nav-link">الشهادات</a></li> -->
+                   <!--  <li><a href="#contact" class="nav-link">تواصل معنا</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </header>
 
-            <!-- Sale Timer -->
-            <div class="sale-timer">
-                <h2>خصم مفاجأة على جميع العطور</h2>
-                <p>كل آخر جمعة من كل شهر</p>
-                <div class="timer">
-                    <div class="time-block">
-                        <div class="time-number" id="days">00</div>
-                        <div class="time-text">يوم</div>
-                    </div>
-                    <div class="time-block">
-                        <div class="time-number" id="hours">00</div>
-                        <div class="time-text">ساعة</div>
-                    </div>
-                    <div class="time-block">
-                        <div class="time-number" id="minutes">00</div>
-                        <div class="time-text">دقيقة</div>
-                    </div>
-                    <div class="time-block">
-                        <div class="time-number" id="seconds">00</div>
-                        <div class="time-text">ثانية</div>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <p class="hero-logo">عالم العطور الفاخرة</p>
+            <h1 class="hero-title">VOSS</h1>
+            <p class="hero-subtitle">اكتشف الفخامة والتميز مع عطورنا الحصرية</p>
+            <div class="scroll-down"><i class="fas fa-chevron-down"></i></div>
+           
+        </div>
+        
+    </section>
+
+    <!-- Sale Timer Section -->
+    <section class="container" style="margin-top: 4rem;">
+        <div class="sale-timer" data-aos="fade-up">
+            <h2>كل عام وانتم بخير رمضان مبارك عليكم</h2>
+            <h2>عرض خاص - خصم 20% </h2>
+            <p>خلال شهر رمضان المبارك</p>
+            <div class="timer">
+                <div class="time-block">
+                    <div class="time-number" id="days">00</div>
+                    <div class="time-text">يوم</div>
+                </div>
+                <div class="time-block">
+                    <div class="time-number" id="hours">00</div>
+                    <div class="time-text">ساعة</div>
+                </div>
+                <div class="time-block">
+                    <div class="time-number" id="minutes">00</div>
+                    <div class="time-text">دقيقة</div>
+                </div>
+                <div class="time-block">
+                    <div class="time-number" id="seconds">00</div>
+                    <div class="time-text">ثانية</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features">
-        <div class="features-container">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-clock"></i>
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">مميزاتنا</h2>
+            <div class="features-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-star"></i></div>
+                    <h3>تركيبات حصرية</h3>
+                    <p>تتميز عطورنا بتركيبات فريدة تجمع بين الأناقة والفخامة.</p>
                 </div>
-                <h3>يدوم 24 ساعة</h3>
-                <p>عطور بتركيبة خاصة تدوم طوال اليوم</p>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h3>ثبات يدوم طويلاً</h3>
+                    <p>عطورنا تثبت لفترة طويلة لترافقك طوال اليوم.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-award"></i></div>
+                    <h3>جودة عالمية</h3>
+                    <p>أحدث التقنيات وأفضل الخامات لضمان جودة استثنائية.</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-spray-can"></i>
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">منتجاتنا</h2>
+            <div class="products-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">وان ميليون رجالي GA (One Million)</h3>
+                        <p class="product-description">عطر وان ميليون GA يجسد الفخامة والجرأة برائحة غنية تجمع بين الجلد الفاخر والتوابل الدافئة. مثالي للمناسبات المسائية والسهرات الراقية، هذا العطر الرجالي مصمم للرجل الواثق الذي يترك أثرًا لا يُنسى.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>فوحان قوي</h3>
-                <p>عطور مركزة تترك انطباعاً لا يُنسى</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-award"></i>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">توم فورد بلاك أوركيد (Tom Ford Black Orchid)</h3>
+                        <p class="product-description">عطر توم فورد بلاك أوركيد هو تحفة غامضة تجمع الأوركيد الأسود مع الشوكولاتة الداكنة والتوابل الفاخرة. مثالي للحفلات الفاخرة والمناسبات الخاصة، هذا العطر للجنسين يناسب الشخصيات الجريئة التي تبحث عن التميز.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>جودة عالمية</h3>
-                <p>أفضل الخامات العالمية بأيدي خبراء العطور</p>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">خمرة (Khamra)</h3>
+                        <p class="product-description">عطر خمرة ينقلك إلى عالم الشرق الساحر برائحة العود الفاخر الممزوج بالفانيليا الحلوة. مثالي للمناسبات التقليدية والمسائية، هذا العطر للجنسين يضفي لمسة من الأصالة والدفء</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">212 سيكسي رجالي (212 Sexy Men)</h3>
+                        <p class="product-description">عطر 212 سيكسي يجمع بين التوابل الحارة والمسك الجذاب ليمنحك جاذبية لا تُقاوم. مثالي للمواعيد الرومانسية والسهرات الليلية، هذا العطر الرجالي مصمم للرجل العصري المغري.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">توم فورد توباكو فانيليا (Tom Ford Tobacco Vanille)</h3>
+                        <p class="product-description">عطر توباكو فانيليا يقدم مزيجًا دافئًا من التبغ الفاخر والفانيليا الكريمية. مثالي للمناسبات الشتوية واللقاءات الأنيقة، هذا العطر للجنسين يناسب عشاق الروائح الغنية والمريحة.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">بلوشانيل رجالي (Bleu de Chanel)</h3>
+                        <p class="product-description">عطر بلوشانيل يعكس الأناقة العصرية برائحة خشبية منعشة مع لمسة من الحمضيات. مثالي للاجتماعات الرسمية والمناسبات النهارية، هذا العطر الرجالي مثالي للرجل المتألق والمتعدد المواهب.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">جان بول الترا ميل (Jean Paul Gaultier Ultra Male)</h3>
+                        <p class="product-description">عطر الترا ميل يجمع بين الفانيليا السوداء والكمثرى الحلوة ليخلق رائحة جريئة ومغرية. مثالي للحفلات الليلية والمناسبات الشبابية، هذا العطر الرجالي يناسب الشخصية القوية والمتمردة.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">أرماني سترونجر ويز يو (Armani Stronger With You)</h3>
+                        <p class="product-description">عطر سترونجر ويز يو يقدم مزيجًا دافئًا من الكستناء والفانيليا مع لمسة من التوابل. مثالي للمواعيد الرومانسية والأمسيات الهادئة، هذا العطر الرجالي يعبر عن العاطفة والقرب.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">خمرة قهوة (Khamra Coffee)</h3>
+                        <p class="product-description">عطر خمرة قهوة يمزج دفء القهوة المحمصة مع العود والفانيليا لتجربة حسية فريدة. مثالي للمناسبات المسائية واللقاءات الشتوية، هذا العطر للجنسين يناسب عشاق الروائح الشرقية العميقة.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">كوكو شانيل (Coco Chanel)</h3>
+                        <p class="product-description">عطر كوكو شانيل يقدم تجربة فاخرة مع مزيج من الياسمين والفانيليا والحمضيات. مثالي للحفلات الراقية والمناسبات المسائية، هذا العطر النسائي يعكس الأناقة الكلاسيكية والجاذبية الخالدة.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">بومب شيل (Bombshell)</h3>
+                        <p class="product-description">عطر بومب شيل ينفجر برائحة زهرية مشمسة مع لمسة من الفواكه المنعشة. مثالي للنزهات النهارية والمناسبات الصيفية، هذا العطر النسائي يناسب المرأة المفعمة بالحيوية والإشراق.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">وان ميليون إكسير (One Million Elixir)</h3>
+                        <p class="product-description">عطر وان ميليون إكسير يقدم تركيبة غنية من الفانيليا والتفاح مع لمسة من التوابل. مثالي للسهرات الفاخرة والمناسبات الخاصة، هذا العطر الرجالي يناسب الرجل الذي يبحث عن الفخامة المطلقة.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">أرماني سترونجر ويز يو توباكو(Armani Stronger With You Tobaco)</h3>
+                        <p class="product-description">عطر سترونج توباكو يجمع بين التبغ القوي والروائح الخشبية العميقة. مثالي للمناسبات المسائية والشتوية، هذا العطر الرجالي يناسب الرجل الجريء الذي يترك بصمة قوية.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">Black Opium</h3>
+                        <p class="product-description">Black Opium هو عطر يجسد الجرأة والإغراء، حيث يمتزج دفء القهوة السوداء مع نعومة الفانيليا والزهور البيضاء. مثالي للسهرات الليلية والمناسبات التي تتطلب لمسة من الغموض والأناقة، هذا العطر النسائي يناسب المرأة العصرية التي تبحث عن رائحة تأسر الحواس وتترك انطباعًا لا يُنسى.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <div class="product-image" style="background-image: url('prod1.jpg');"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">Interlude Black Iris Eau de Parfum</h3>
+                        <p class="product-description">Interlude Black Iris يقدم تجربة عطرية غامضة ومتناغمة، حيث يمتزج دفء البخور والمر مع نعومة زهرة السوسن الملكية. مثالي للمناسبات المسائية الراقية واللحظات التي تتطلب حضورًا قويًا وهادئًا في آن واحد، هذا العطر للجنسين يناسب الشخصيات الواثقة التي تبحث عن توازن بين القوة والأناقة الخالدة.</p>
+                        <div class="product-price">
+                            <!-- <span class="price-tag">900 جنيه 100مل</span>
+                            <span class="price-tag">600 جنيه 50مل</span>
+                            <span class="price-tag">400 جنيه 30مل</span> -->
+                            <span class="price-tag"><del>900 جنيه </del><br /> 720 جنيه 100مل</span>
+                            <span class="price-tag"><del>600 جنيه</del><br />480 جنيه 50مل</span>
+                            <span class="price-tag"><del>400 جنيه</del><br />320 جنيه 30مل</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Catalog Section -->
-    <section class="catalog">
-        <h2 class="section-title">تصفح كتالوج منتجاتنا</h2>
-        <div class="catalog-content">
-            <p>اكتشف مجموعتنا المميزة من العطور الفاخرة بمختلف الأحجام والأسعار</p>
-            <div class="prices">
-                <div class="price-item">
-                    <span>100 مل</span>
-                    <span>900 جنيه</span>
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">كتالوج المنتجات</h2>
+            <div class="catalog-content" data-aos="fade-up" data-aos-delay="200">
+                <p>تصفح كتالوج منتجاتنا الشامل الذي يضم كافة تفاصيل العطور وأحجامها المتنوعة.</p>
+                <!-- <div class="prices">
+                    <div class="price-item">
+                        <div class="size">100 مل</div>
+                        <div class="price">900 جنيه</div>
+                        <div class="price-tag-badge">الأكثر مبيعاً</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="size">50 مل</div>
+                        <div class="price">600 جنيه</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="size">30 مل</div>
+                        <div class="price">400 جنيه</div>
+                    </div>
+                </div> -->
+                <div class="catalog-buttons">
+                    <a href="voss_catalog.pdf" class="btn btn-primary" target="_blank"><i class="fas fa-book"></i> تحميل الكتالوج</a>
+                    <a href="https://wa.me/201557171807" class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> تواصل معنا</a>
                 </div>
-                <div class="price-item">
-                    <span>50 مل</span>
-                    <span>600 جنيه</span>
-                </div>
-                <div class="price-item">
-                    <span>30 مل</span>
-                    <span>400 جنيه</span>
-                </div>
-            </div>
-            <div class="catalog-buttons">
-                <a href="voss cat.pdf" class="btn btn-primary" target="_blank">
-                    <i class="fas fa-book"></i> كتالوج المنتجات
-                </a>
-                <a href="https://wa.me/201557171807" class="btn btn-secondary" target="_blank">
-                    <i class="fab fa-whatsapp"></i> تواصل معنا
-                </a>
             </div>
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+   <!--  <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">آراء العملاء</h2>
+            <div class="testimonials-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"عطر VOSS غيّر مفهوم الفخامة بالنسبة لي، ترك أثراً لا يُنسى."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://via.placeholder.com/50" alt="عميل">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">أحمد علي</div>
+                                <div class="author-title">مدير تنفيذي</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"تصميم أنيق ورائحة فاخرة تجعلني أشعر بالتميز في كل مناسبة."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://via.placeholder.com/50" alt="عميلة">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">سارة محمد</div>
+                                <div class="author-title">مدونة أزياء</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"منتجات VOSS تمثل الجودة والأصالة، أنصح بها لكل من يبحث عن التميز."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://via.placeholder.com/50" alt="عميل">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">خالد صالح</div>
+                                <div class="author-title">مستشار أعمال</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+   <!--  <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">تواصل معنا</h2>
+            <div class="contact-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>العنوان</h4>
+                            <p>شارع النخيل، القاهرة، مصر</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>الهاتف</h4>
+                            <p>+20 123456789</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>البريد الإلكتروني</h4>
+                            <p><a href="mailto:info@vossperfumes.com">info@vossperfumes.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="الاسم" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="البريد الإلكتروني" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="رسالتك" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> أرسل</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">VOSS</div>
-            <div class="social-links">
-                <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=xftsbuy" class="social-link" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/share/1BSMMjtE3W/?mibextid=qi2Omg" class="social-link" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://wa.me/201557171807" class="social-link" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
+        <div class="container">
+            <div class="footer-content" data-aos="fade-up">
+                <a href="#" class="logo">VOSS</a>
+                <p>
+                  <span class="text-blue-500 font-bold">VOSS</span> © - Developed by
+                  <span class="font-semibold">
+                    <a href="https://moibrahim0115.github.io/cv/?" target="_blank" class="text-gray-500 hover:underline">Mohamed Ibrahim</a>
+                  </span>
+                  <span id="year" class="text-gray-500"></span>
+                </p>
+                
+                <script>
+                  document.getElementById("year").textContent = new Date().getFullYear();
+                </script>
+               <!--  <div class="social-links">
+                    <a href="https://instagram.com/vossperfumes" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/vossperfumes" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://wa.me/201557171807" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div> -->
             </div>
-            <p class="footer-text">جميع الحقوق محفوظة © 2025 VOSS</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // Timer Function
-        function initTimer() {
-            function getLastFridayOfMonth(date) {
-                const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-                const lastFriday = new Date(lastDay);
-                while (lastFriday.getDay() !== 5) {
-                    lastFriday.setDate(lastFriday.getDate() - 1);
-                }
-                lastFriday.setHours(23, 59, 59, 999);
-                return lastFriday;
-            }
-
-            function updateTimer() {
-                const now = new Date();
-                let targetDate = getLastFridayOfMonth(now);
-                if (now > targetDate) {
-                    const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-                    targetDate = getLastFridayOfMonth(nextMonth);
-                }
-
-                const difference = targetDate - now;
-                if (difference <= 0) {
-                    document.querySelector('.sale-timer').innerHTML = '<h2>العرض لمدة 24 ساعة</h2>';
-                    return;
-                }
-
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            }
-
-            updateTimer();
-            setInterval(updateTimer, 1000);
-        }
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', () => {
-            initTimer();
+        document.addEventListener('DOMContentLoaded', function() {
+          const scrollDownButton = document.querySelector('.scroll-down');
+          const scrollAmount = window.innerHeight; // أو element.offsetHeight
+      
+          scrollDownButton.addEventListener('click', function() {
+            window.scrollBy({
+              top: scrollAmount,
+              behavior: 'smooth'
+            });
+          });
         });
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // تأثير تغيير مظهر الهيدر عند التمرير
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // دالة حساب آخر يوم من الشهر وإظهار العداد
+        function getLastDayOfMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+}
+
+// تعريف المتغيرات اللازمة
+let isPaused = false; // حالة التوقف
+let pauseStartTime = null; // وقت بدء التوقف
+const pauseDuration = 24 * 60 * 60 * 1000; // 24 ساعة بالمللي ثانية
+
+function updateTimer() {
+    const now = new Date();
+
+    // التحقق من حالة التوقف
+    if (isPaused) {
+        const timeSincePause = now - pauseStartTime;
+        if (timeSincePause >= pauseDuration) {
+            // انتهت فترة التوقف، إعادة تشغيل التايمر
+            isPaused = false;
+            pauseStartTime = null;
+        } else {
+            // عرض رسالة التوقف
+            document.querySelector('.sale-timer').innerHTML = '<h2>العرض منتهي</h2>';
+            return;
+        }
+    }
+
+    // حساب الوقت المتبقي حتى آخر الشهر
+    const lastDay = getLastDayOfMonth(now);
+    lastDay.setHours(23, 59, 59, 999);
+    const diff = lastDay - now;
+
+    if (diff <= 0) {
+        // بدء فترة التوقف عندما يصل التايمر إلى الصفر
+        isPaused = true;
+        pauseStartTime = now;
+        document.querySelector('.sale-timer').innerHTML = '<h2>العرض منتهي</h2>';
+        return;
+    }
+
+    // حساب الأيام والساعات والدقائق والثواني
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    // تحديث العناصر في الصفحة
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+}
+
+// تشغيل التايمر فورًا وتحديثه كل ثانية
+updateTimer();
+setInterval(updateTimer, 1000);
     </script>
 </body>
 </html>
