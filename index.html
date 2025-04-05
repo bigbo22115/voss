@@ -99,15 +99,15 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 10px 0;
             z-index: 1000;
             transition: 0.3s ease-in-out;
         }
         
         header.scrolled {
             background-color: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         header .container {
@@ -123,7 +123,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             text-decoration: none;
-            cursor: default; /* Changed from pointer to default to make it look normal */
+            cursor: default;
         }
         
         .logo img {
@@ -136,16 +136,35 @@
             margin: 0;
         }
         
-        .mobile-menu {
+        #mobile-toggle {
             display: none;
-            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
             color: var(--secondary-color);
             cursor: pointer;
+            z-index: 1002;
+            padding: 8px;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        #mobile-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        #mobile-toggle:active {
+            transform: scale(0.95);
         }
         
         nav {
             display: flex;
             align-items: center;
+            transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1);
         }
         
         .nav-links {
@@ -163,7 +182,7 @@
             color: var(--light-color);
             font-size: 0.95rem;
             text-decoration: none;
-            padding: 5px 0;
+            padding: 8px 0;
             position: relative;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -1113,100 +1132,154 @@
                 padding: 0 1rem;
             }
             
-            .mobile-menu {
-                display: block;
+            #mobile-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: rgba(15, 15, 15, 0.98);
+                z-index: 1001;
+                padding-top: 70px;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+                transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+                overflow-y: auto;
+            }
+            
+            body.nav-open {
+                overflow: hidden;
+            }
+            
+            body.nav-open nav {
+                right: 0;
+            }
+            
+            body.nav-open .nav-overlay {
+                opacity: 1;
+                visibility: visible;
             }
             
             .nav-links {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                width: 80%;
-                height: calc(100vh - 70px);
-                background: var(--overlay-dark);
                 flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                padding: 3rem 1rem;
-                transition: 0.4s ease;
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                z-index: 1000;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+                width: 100%;
+                padding: 20px;
             }
             
-            .nav-links.active {
-                right: 0;
+            .nav-links li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
             }
             
             .nav-link {
                 display: block;
-                margin: 1.5rem 0;
-                font-size: 1.2rem;
-            }
-            
-            .hero-content {
-                padding: 1rem;
-            }
-            
-            .hero-title {
-                font-size: clamp(2.5rem, 10vw, 4rem);
-            }
-            
-            .hero-subtitle {
+                padding: 10px;
                 font-size: 1.1rem;
+                width: 100%;
+                border-radius: 5px;
             }
             
-            .products-container {
-                grid-template-columns: 1fr;
+            .nav-link:hover, .nav-link.active {
+                background-color: rgba(196, 166, 97, 0.1);
             }
             
-            .features-container {
-                grid-template-columns: 1fr;
+            .nav-link::after {
+                display: none;
             }
             
-            .bottle-3d {
-                width: 120px;
-                top: 15%;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-                margin: 1rem 0;
+            /* تحسين الشعار للشاشات الصغيرة */
+            .logo h1 {
+                font-size: 1.3rem;
             }
         }
         
+        /* نقطة توقف إضافية للشاشات الأصغر حجماً */
         @media (max-width: 480px) {
-            .hero-title {
-                font-size: clamp(2rem, 10vw, 3rem);
+            /* تقليل عرض القائمة المتنقلة للشاشات الصغيرة جداً */
+            nav {
+                width: 85%;
             }
             
-            .section-title {
+            /* زيادة حجم زر القائمة للمس الأسهل */
+            #mobile-toggle {
+                width: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+            }
+            
+            /* تحسين المساحات الداخلية للروابط على الشاشات الصغيرة */
+            .nav-link {
+                padding: 12px 8px;
+                font-size: 1rem;
+            }
+            
+            /* تقليل المساحة بين عناصر القائمة */
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            /* تقليل المساحة الداخلية للنافبار */
+            header .container {
+                padding: 0 15px;
+            }
+            
+            /* تصغير حجم الشعار */
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* نقطة توقف للشاشات المتناهية الصغر */
+        @media (max-width: 320px) {
+            nav {
+                width: 100%;
+            }
+            
+            #mobile-toggle {
+                width: 44px;
+                height: 44px;
+            }
+            
+            .logo h1 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* تحسينات إضافية للأجهزة ذات الشاشات الصغيرة جدًا */
+        @media (max-width: 360px) {
+            .hero-title {
                 font-size: 1.8rem;
             }
             
-            .sale-timer {
-                padding: 2rem 1rem;
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.2rem;
             }
             
             .timer {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-                max-width: 300px;
+                max-width: 250px;
             }
             
-            .time-block {
-                padding: 1rem 0.8rem;
+            /* التأكد من أن المحتوى يناسب الشاشات الصغيرة جدًا */
+            .container {
+                padding: 0 0.8rem;
             }
             
-            .time-number {
-                font-size: clamp(1.5rem, 5vw, 2rem);
-            }
-            
-            .social-links {
-                flex-wrap: wrap;
-                justify-content: center;
+            .product-info {
+                padding: 1rem;
             }
         }
 
@@ -1422,25 +1495,30 @@
     <!-- Header -->
     <header id="header">
         <div class="container">
-            <div class="logo">
-                <h1> VOSS</h1>
-            </div>
-            <div class="mobile-menu">
+            <a href="#" class="logo">
+                <h1>VOSS</h1>
+            </a>
+            
+            <button id="mobile-toggle" aria-expanded="false" aria-label="فتح القائمة">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
+            
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#hero" class="nav-link">الرئيسية</a></li>
+                    <li><a href="#hero" class="nav-link active">الرئيسية</a></li>
                     <li><a href="#features" class="nav-link">المميزات</a></li>
                     <li><a href="#products" class="nav-link">المنتجات</a></li>
-                    <li><a href="#men" class="nav-link">عطور رجالية</a></li>
-                    <li><a href="#women" class="nav-link">عطور نسائية</a></li>
-                    <li><a href="#unisex" class="nav-link">عطور للجنسين</a></li>
-                    <li><a href="#catalog" class="nav-link">الكتالوج</a></li>
+                    <li><a href="#men" class="nav-link">رجالي</a></li>
+                    <li><a href="#women" class="nav-link">نسائي</a></li>
+                    <li><a href="#unisex" class="nav-link">للجنسين</a></li>
+                    <li><a href="#contact" class="nav-link">اتصل بنا</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    
+    <!-- Overlay for mobile navigation -->
+    <div class="nav-overlay"></div>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -1480,7 +1558,7 @@
                     </div>
                 </div>
                 <div class="sale-message">
-                  <p>تصفح الكتالوج لمعرفة المنتجات المتاحة والأسعار القادمة!</p> 
+                    <p>تصفح الكتالوج لمعرفة المنتجات المتاحة والأسعار القادمة!</p>
                 </div>
                 <div class="discounted-prices">
                     <div class="discount-item">
@@ -1794,19 +1872,30 @@
             const navLinks = document.querySelectorAll('.nav-links .nav-link');
             const mobileMenuBtn = document.querySelector('.mobile-menu');
             const navLinksContainer = document.querySelector('.nav-links');
+            const body = document.body;
             
-            // تفعيل قائمة الجوال
+            // تفعيل قائمة الجوال - تحديث الكود لحل مشكلة عدم عمل القائمة
             if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
+                // استخدام addEventListener بدلاً من onclick
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault(); // منع السلوك الافتراضي
+                    e.stopPropagation(); // منع انتشار الحدث
+                    
+                    // تبديل حالة القائمة
                     navLinksContainer.classList.toggle('active');
+                    
                     // تغيير أيقونة القائمة
                     const icon = this.querySelector('i');
-                    if (icon.classList.contains('fa-bars')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
+                    if (icon) {
+                        if (navLinksContainer.classList.contains('active')) {
+                            icon.classList.remove('fa-bars');
+                            icon.classList.add('fa-times');
+                            body.classList.add('menu-open');
+                        } else {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                            body.classList.remove('menu-open');
+                        }
                     }
                 });
             }
@@ -1820,7 +1909,7 @@
                     
                     if (targetSection) {
                         window.scrollTo({
-                            top: targetSection.offsetTop - 80,
+                            top: targetSection.offsetTop - 70, // تعديل إلى قيمة أصغر للهواتف
                             behavior: 'smooth'
                         });
                         
@@ -1840,10 +1929,28 @@
                             if (icon) {
                                 icon.classList.remove('fa-times');
                                 icon.classList.add('fa-bars');
+                                body.classList.remove('menu-open');
                             }
                         }
                     }
                 });
+            });
+            
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768 && 
+                    navLinksContainer.classList.contains('active') && 
+                    !navLinksContainer.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target)) {
+                    
+                    navLinksContainer.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    body.classList.remove('menu-open');
+                }
             });
             
             function highlightNavItem() {
@@ -2497,59 +2604,59 @@
     <section class="admin-controls" id="admin-panel" style="padding: 2rem 0; background-color: #1a1a1a; display: none;">
         <div class="container">
             <h2 class="section-title">لوحة تحكم المنتجات</h2>
-            <button id="toggle-admin-panel" class="btn" style="margin-bottom: 1rem;">عرض/إخفاء لوحة التحكم</button>
+            <button id="toggle-admin-panel" class="btn" style="margin-bottom: 1rem; width: 100%; max-width: 300px; padding: 0.8rem 0;">عرض/إخفاء لوحة التحكم</button>
             
             <div id="admin-panel-content" style="display: none; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 10px;">
                 <div style="margin-bottom: 1rem;">
                     <h3>تعديل منتج موجود</h3>
-                    <select id="product-selector" style="padding: 0.5rem; margin-bottom: 0.5rem; width: 100%; background: #333; color: #fff; border: 1px solid #555;">
+                    <select id="product-selector" style="padding: 0.8rem; margin-bottom: 0.8rem; width: 100%; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
                         <option value="">اختر منتج للتعديل</option>
                     </select>
                     
                     <div id="edit-form" style="display: none;">
-                        <div style="margin-bottom: 0.5rem;">
-                            <label style="display: block; margin-bottom: 0.2rem;">اسم المنتج:</label>
-                            <input type="text" id="edit-name" style="width: 100%; padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555;">
+                        <div style="margin-bottom: 0.8rem;">
+                            <label style="display: block; margin-bottom: 0.3rem; font-size: 1rem;">اسم المنتج:</label>
+                            <input type="text" id="edit-name" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
                         </div>
                         
-                        <div style="margin-bottom: 0.5rem;">
-                            <label style="display: block; margin-bottom: 0.2rem;">الوصف:</label>
-                            <textarea id="edit-description" style="width: 100%; padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555; min-height: 100px;"></textarea>
+                        <div style="margin-bottom: 0.8rem;">
+                            <label style="display: block; margin-bottom: 0.3rem; font-size: 1rem;">الوصف:</label>
+                            <textarea id="edit-description" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #555; min-height: 100px; border-radius: 8px;"></textarea>
                         </div>
                         
-                        <div style="margin-bottom: 0.5rem;">
-                            <label style="display: block; margin-bottom: 0.2rem;">الفئة:</label>
-                            <select id="edit-category" style="width: 100%; padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555;">
+                        <div style="margin-bottom: 0.8rem;">
+                            <label style="display: block; margin-bottom: 0.3rem; font-size: 1rem;">الفئة:</label>
+                            <select id="edit-category" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
                                 <option value="men">رجالي</option>
                                 <option value="women">نسائي</option>
                                 <option value="unisex">للجنسين</option>
                             </select>
                         </div>
                         
-                        <div style="margin-bottom: 0.5rem;">
-                            <label style="display: block; margin-bottom: 0.2rem;">صورة المنتج (مسار الملف):</label>
-                            <input type="text" id="edit-image" style="width: 100%; padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555;">
+                        <div style="margin-bottom: 0.8rem;">
+                            <label style="display: block; margin-bottom: 0.3rem; font-size: 1rem;">صورة المنتج (مسار الملف):</label>
+                            <input type="text" id="edit-image" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
                         </div>
                         
-                        <div style="margin-bottom: 0.5rem;">
-                            <label style="display: block; margin-bottom: 0.2rem;">الأسعار:</label>
-                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                        <div style="margin-bottom: 0.8rem;">
+                            <label style="display: block; margin-bottom: 0.3rem; font-size: 1rem;">الأسعار:</label>
+                            <div class="price-inputs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem;">
                                 <div>
-                                    <label>100 مل:</label>
-                                    <input type="number" id="edit-price-100ml" style="width: 100%; padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555;">
+                                    <label style="font-size: 0.9rem;">100 مل:</label>
+                                    <input type="number" id="edit-price-100ml" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
                                 </div>
                                 <div>
-                                    <label>50 مل:</label>
-                                    <input type="number" id="edit-price-50ml" style="width: 100%; padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555;">
+                                    <label style="font-size: 0.9rem;">50 مل:</label>
+                                    <input type="number" id="edit-price-50ml" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
                                 </div>
                                 <div>
-                                    <label>30 مل:</label>
-                                    <input type="number" id="edit-price-30ml" style="width: 100%; padding: 0.5rem; background: #333; color: #fff; border: 1px solid #555;">
+                                    <label style="font-size: 0.9rem;">30 مل:</label>
+                                    <input type="number" id="edit-price-30ml" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
                                 </div>
                             </div>
                         </div>
                         
-                        <button id="update-product" class="btn" style="margin-top: 1rem; background: var(--gradient-gold); color: var(--dark-color);">تحديث المنتج</button>
+                        <button id="update-product" class="btn" style="margin-top: 1.5rem; background: var(--gradient-gold); color: var(--dark-color); width: 100%; padding: 1rem; font-weight: 600; font-size: 1rem; border-radius: 8px;">تحديث المنتج</button>
                     </div>
                 </div>
             </div>
@@ -2695,6 +2802,171 @@
             // يجب تنفيذ هذا بعد تهيئة نظام المنتجات
             setTimeout(updateProductSelector, 500);
         });
+    </script>
+
+    <!-- Class for managing the mobile navigation with enhanced mobile support -->
+    <script>
+        class MobileNavigation {
+            constructor() {
+                // Elements
+                this.body = document.body;
+                this.header = document.querySelector('header');
+                this.mobileToggle = document.getElementById('mobile-toggle');
+                this.navOverlay = document.querySelector('.nav-overlay');
+                this.navLinks = document.querySelectorAll('.nav-link');
+                this.toggleIcon = this.mobileToggle.querySelector('i');
+                
+                // State
+                this.isOpen = false;
+                this.lastScrollY = window.scrollY;
+                this.scrollThreshold = 50;
+                this.ticking = false;
+                
+                // Bind methods to this instance
+                this.toggleNav = this.toggleNav.bind(this);
+                this.closeNav = this.closeNav.bind(this);
+                this.handleResize = this.handleResize.bind(this);
+                this.handleKeyDown = this.handleKeyDown.bind(this);
+                this.handleScroll = this.handleScroll.bind(this);
+                this.handleLinkClick = this.handleLinkClick.bind(this);
+                
+                // Initialize
+                this.init();
+            }
+            
+            init() {
+                // Add event listeners
+                this.mobileToggle.addEventListener('click', this.toggleNav);
+                this.navOverlay.addEventListener('click', this.closeNav);
+                window.addEventListener('resize', this.handleResize);
+                document.addEventListener('keydown', this.handleKeyDown);
+                window.addEventListener('scroll', this.handleScroll);
+                
+                // Add click events to nav links
+                this.navLinks.forEach(link => {
+                    link.addEventListener('click', this.handleLinkClick);
+                });
+                
+                // Set initial active state based on current section
+                this.updateActiveNavLink();
+            }
+            
+            toggleNav() {
+                this.isOpen = !this.isOpen;
+                this.body.classList.toggle('nav-open', this.isOpen);
+                this.mobileToggle.setAttribute('aria-expanded', this.isOpen);
+                
+                // Update icon and aria-label for accessibility
+                if (this.isOpen) {
+                    this.toggleIcon.className = 'fas fa-times';
+                    this.mobileToggle.setAttribute('aria-label', 'إغلاق القائمة');
+                } else {
+                    this.toggleIcon.className = 'fas fa-bars';
+                    this.mobileToggle.setAttribute('aria-label', 'فتح القائمة');
+                }
+            }
+            
+            closeNav() {
+                if (this.isOpen) {
+                    this.isOpen = false;
+                    this.body.classList.remove('nav-open');
+                    this.mobileToggle.setAttribute('aria-expanded', false);
+                    this.toggleIcon.className = 'fas fa-bars';
+                    this.mobileToggle.setAttribute('aria-label', 'فتح القائمة');
+                }
+            }
+            
+            handleResize() {
+                // Close nav if window is resized to desktop size
+                if (window.innerWidth > 768 && this.isOpen) {
+                    this.closeNav();
+                }
+            }
+            
+            handleKeyDown(e) {
+                // Close nav when Escape key is pressed
+                if (e.key === 'Escape' && this.isOpen) {
+                    this.closeNav();
+                }
+            }
+            
+            handleScroll() {
+                // Implement a better scroll handling with throttling
+                if (!this.ticking) {
+                    window.requestAnimationFrame(() => {
+                        // Update header based on scroll position
+                        if (window.scrollY > this.scrollThreshold) {
+                            this.header.classList.add('scrolled');
+                        } else {
+                            this.header.classList.remove('scrolled');
+                        }
+                        
+                        // Close menu when scrolling on mobile
+                        if (window.innerWidth <= 768 && this.isOpen && Math.abs(window.scrollY - this.lastScrollY) > 30) {
+                            this.closeNav();
+                        }
+                        
+                        this.lastScrollY = window.scrollY;
+                        this.ticking = false;
+                        
+                        // Update active nav link
+                        this.updateActiveNavLink();
+                    });
+                    
+                    this.ticking = true;
+                }
+            }
+            
+            handleLinkClick(e) {
+                // Close nav after clicking a link on mobile
+                if (window.innerWidth <= 768) {
+                    this.closeNav();
+                }
+                
+                // Get the target section
+                const targetId = e.currentTarget.getAttribute('href');
+                
+                // Only apply smooth scroll for page anchors
+                if (targetId.startsWith('#') && targetId.length > 1) {
+                    e.preventDefault();
+                    
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        // Smooth scroll to section
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Update URL without a page reload
+                        history.pushState(null, null, targetId);
+                    }
+                }
+            }
+            
+            updateActiveNavLink() {
+                // Find which section is currently visible
+                const sections = document.querySelectorAll('section[id]');
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                // Update active nav link
+                this.navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // Initialize the MobileNavigation class
+        const mobileNav = new MobileNavigation();
     </script>
 </body>
 </html>
