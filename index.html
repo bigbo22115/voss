@@ -1489,6 +1489,37 @@
             font-size: 0.95rem;
             color: var(--text-color);
         }
+
+        /* أنماط رابط واتساب في النافبار */
+        .whatsapp-link {
+            display: flex !important;
+            align-items: center;
+            gap: 6px;
+            color: #25D366 !important;
+            font-weight: 600 !important;
+            padding: 6px 12px !important;
+            border-radius: 20px;
+            background-color: rgba(37, 211, 102, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-link:hover {
+            background-color: rgba(37, 211, 102, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-link i {
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-link {
+                justify-content: center;
+                padding: 10px !important;
+                margin-top: 10px;
+                background-color: rgba(37, 211, 102, 0.15);
+            }
+        }
     </style>
 </head>
 <body>
@@ -1511,7 +1542,7 @@
                     <li><a href="#men" class="nav-link">رجالي</a></li>
                     <li><a href="#women" class="nav-link">نسائي</a></li>
                     <li><a href="#unisex" class="nav-link">للجنسين</a></li>
-                    <li><a href="#contact" class="nav-link">اتصل بنا</a></li>
+                    <li><a href="https://api.whatsapp.com/send?phone=201557171807&text=مرحباً،%20أود%20الاستفسار%20عن%20منتجاتكم" target="_blank" rel="noopener noreferrer" class="nav-link whatsapp-link" onclick="window.open(this.href, '_blank'); return false;"><i class="fab fa-whatsapp"></i> تواصل معنا</a></li>
                 </ul>
             </nav>
         </div>
@@ -2918,13 +2949,23 @@
             }
             
             handleLinkClick(e) {
+                // Get the target section
+                const targetId = e.currentTarget.getAttribute('href');
+                
+                // Skip external links (like WhatsApp)
+                if (targetId.startsWith('http')) {
+                    // For external links, we just let the default behavior happen
+                    // but still close the mobile nav if needed
+                    if (window.innerWidth <= 768) {
+                        this.closeNav();
+                    }
+                    return;
+                }
+                
                 // Close nav after clicking a link on mobile
                 if (window.innerWidth <= 768) {
                     this.closeNav();
                 }
-                
-                // Get the target section
-                const targetId = e.currentTarget.getAttribute('href');
                 
                 // Only apply smooth scroll for page anchors
                 if (targetId.startsWith('#') && targetId.length > 1) {
@@ -2955,11 +2996,15 @@
                     }
                 });
                 
-                // Update active nav link
+                // Update active nav link (skip external links when comparing)
                 this.navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === currentSection) {
-                        link.classList.add('active');
+                    const href = link.getAttribute('href');
+                    // Don't set external links as active based on scroll
+                    if (!href.startsWith('http')) {
+                        link.classList.remove('active');
+                        if (href === currentSection) {
+                            link.classList.add('active');
+                        }
                     }
                 });
             }
